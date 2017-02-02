@@ -1,0 +1,19 @@
+
+A few questions regarding clarification on Lab 4:
+
+1) When we're initializing the new object in the constructor--Student(const char initId[], double gpa)--all we're doing is assigning the arguments passed into the function to an instance of the "Student" class, correct? Looking at app.cpp, the names (s1 & s2) already appear to be recognized/initialized by the program, so the only thing we'd do is set the values of GPA and ID in the constructor, correct? From my understanding of the video, each time the constructor is called to initialize the new object, every instance of the class would have their own instance variables that can be accessed, is that right?
+
+2) I'm having issues accessing the ID and GPA private class members. I'm aware they can't be accessed directly (i.e. s1.gpa), so would I need to make a fourth function to return the value of one of the private members, or is there another way to do this?
+
+Reply to Thread
+Filter by:Filter by:UnreadFlagged
+Show: 
+View profile card for Noon Pokaratsiri  Noon PokaratsiriActions for reply by Noon Pokaratsiri
+October 24 at 2:41 AM
+1) from my understanding, yes you're writing a constructor definition with the parameters provided. I ended up changing the name of the parameter double gpa to initGpa, but if you have already seen Module 5 video, you could do something like:
+
+this->gpa = gpa, instead and keep the variable name gpa the same. 
+
+2) Since you're writing the implementation code for the functions within that class, you have access to the private members of that class. E.g. When you call s1.isLessByGpa(s2), the private variables called by isLessByGpa refers to s1.gpa and s1.id, then aStudent.gpa and aStudent.id would refer to s2.gpa and s2.id based on the formal parameters given by the lab instruction. (isLessByGpa(const Student& aStudent) So as you write the statements to define the functions isLessByGpa and isLessById, you have access to the variables double gpa and char id[MAX_CHAR] because these functions are also in the same class. 
+
+On the other hand, if you are writing another user-defined function that is not a function within the class Student, you cannot write statements that manipulate these variables directly.
